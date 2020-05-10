@@ -37,4 +37,11 @@ export function formatDecks(decks) {
   return decks === null ? setInitialData() : JSON.parse(decks);
 }
 
-
+export function formatDeck({title, questions}){
+    return{
+        id:title,
+        title:title,
+        questions:questions,
+        nCards: questions.lenght
+    }
+}
