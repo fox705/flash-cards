@@ -8,23 +8,22 @@ export default function decks(state = {}, action) {
         ...action.decks,
       };
     case GET_DECK:
-      return{
-          ...state,
-          ...action.deck
-      }
-      case ADD_DECK:
-          return{
-              ...state,
-              ...action.deck
-          }
-      case ADD_QUESTION:
-          return{
-              ...state,
-              [action.key]:{
-                  ...state[action.key],
-                  questions: state[action.key].questions.concat(action.question),
-
-              }
-          }
+      return {
+        ...state,
+        ...action.deck,
+      };
+    case ADD_DECK:
+      return {
+        ...state,
+        ...action.deck,
+      };
+    case ADD_QUESTION:
+      return {
+        ...state,
+        [action.key]: {
+          ...state[action.key],
+          questions: state[action.key].questions.concat(action.question),
+        },
+      };
   }
 }

@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet, Keyboard } from "react-native";
 import {
   TextInput,
   TouchableOpacity,
-  ScrollView,
 } from "react-native-gesture-handler";
+import React, { Component } from "react";
+import { View, Text, StyleSheet, Keyboard } from "react-native";
 import { white } from "../utils/colors";
 import { addDeck } from "../actions";
 import { connect } from "react-redux";
@@ -37,7 +36,6 @@ class NewDeck extends Component {
 
   render() {
     return (
-      <ScrollView>
         <View style={styles.inputContainer}>
           <Text style={styles.text}>Add New Deck</Text>
 
@@ -53,7 +51,6 @@ class NewDeck extends Component {
           </TouchableOpacity>
           <Text>{this.state.title}</Text>
         </View>
-      </ScrollView>
     );
   }
 }

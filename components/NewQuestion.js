@@ -1,15 +1,12 @@
+import "react-native-gesture-handler";
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Keyboard } from "react-native";
-import {
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native-gesture-handler";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { white } from "../utils/colors";
 import { addDeck, addQuestion } from "../actions";
 import { connect } from "react-redux";
 import { submitDeck } from "../utils/api";
-import {styles} from './NewDeck';
+import { styles } from "./NewDeck";
 
 class NewQuestion extends Component {
   state = {
@@ -25,58 +22,57 @@ class NewQuestion extends Component {
   };
 
   hadnleSubmit = () => {
-    const key = this.props;
-    const deck = this.state;
-
+    const question = this.state.question;
+    const answer = this.state.answer;
+    const {navigation} = this.props
+    const {deck, key } = this.props.route.params;
     this.props.dispatch(
-      addQuestion({
-        [key]: deck,
-      })
+      addQuestion(
+        key,
+        [{
+        question: question,
+        answer: answer,
+         }])
     );
     this.setState({ question: "", answer: "" });
-    submitDeck({ deck, key });
+    submitDeck(this.props.state)
+    navigation.navigate('Home')
 
     // redirect Home
   };
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.inputContainer}>
-          <Text style={styles.text}>Add New Question</Text>
 
-          <TextInput
-            style={styles.textInput}
-            placeholder="Question"
-            onChangeText={this.onChangeQuestion}
-            defaultValue={this.state.title}
-            onBlur={Keyboard.dismiss}
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Answer"
-            onChangeText={this.onChangeAnswer}
-            defaultValue={this.state.title}
-            onBlur={Keyboard.dismiss}
-          />
-          <TouchableOpacity style={styles.saveBtn} onPress={this.hadnleSubmit}>
-            <Text style={styles.saveBtnText}>Save</Text>
-          </TouchableOpacity>
-          <Text>{this.state.question}</Text>
-          <Text>{this.state.answer}</Text>
-        </View>
-      </ScrollView>
+      <View style={styles.inputContainer}>
+        <Text style={styles.text}>Add New Question</Text>
+
+        <TextInput
+          style={styles.textInput}
+          placeholder="Question"
+          onChangeText={this.onChangeQuestion}
+          defaultValue={this.state.title}
+          onBlur={Keyboard.dismiss}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Answer"
+          onChangeText={this.onChangeAnswer}
+          defaultValue={this.state.title}
+          onBlur={Keyboard.dismiss}
+        />
+        <TouchableOpacity style={styles.saveBtn} onPress={this.hadnleSubmit}>
+          <Text style={styles.saveBtnText}>Save</Text>
+        </TouchableOpacity>
+        <Text>{this.state.question}</Text>
+        <Text>{this.state.answer}</Text>
+      </View>
     );
   }
 }
 
-
-function mapStateToProps(state){
-    const key = ''
-
-    return{
-
-    }
+function mapStateToProps(state) {
+  return {state};
 }
 
 export default connect(mapStateToProps)(NewQuestion);
