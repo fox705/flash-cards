@@ -23,8 +23,8 @@ class Dashboard extends Component {
 
   render() {
     const { decks } = this.props;
-
-    console.log("DECS: ", decks);
+    const ids = Object.keys(decks)
+    console.log("DECS: ", typeof ids);
     return (
         <SafeAreaView style={styles.container}>
 
