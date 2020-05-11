@@ -11,6 +11,7 @@ import { white, purple } from "../utils/colors";
 import NewQuestion from "./NewQuestion";
 import { AppLoading } from "expo";
 import { connect } from "react-redux";
+import Quiz from "./Quiz";
 
 const Tab = createBottomTabNavigator();
 
@@ -70,11 +71,21 @@ const StackNavigation = () => (
         },
       }}
     />
+    <Stack.Screen
+      name="Quiz"
+      component={Quiz}
+      options={{
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: purple,
+        },
+      }}
+    />
   </Stack.Navigator>
 );
 
  export function Navigation() {
-  
+
     return (
       <NavigationContainer>
         <StackNavigation />

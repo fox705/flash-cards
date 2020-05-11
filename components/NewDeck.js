@@ -24,13 +24,15 @@ class NewDeck extends Component {
         [key]: deck,
       })
     );
-    this.setState({ title: "" });
     submitDeck({ deck, key });
+    this.setState({ title: "" });
+
 
     // redirect Home
   };
 
   render() {
+    const {title} = this.state;
     return (
         <View style={styles.inputContainer}>
           <Text style={styles.text}>Add New Deck</Text>
@@ -42,7 +44,7 @@ class NewDeck extends Component {
             defaultValue={this.state.title}
             onBlur={Keyboard.dismiss}
           />
-          <TouchableOpacity style={styles.saveBtn} onPress={this.hadnleSubmit}>
+          <TouchableOpacity  disabled={title === ''} style={styles.saveBtn} onPress={this.hadnleSubmit}>
             <Text style={styles.saveBtnText}>Save</Text>
           </TouchableOpacity>
           <Text>{this.state.title}</Text>
