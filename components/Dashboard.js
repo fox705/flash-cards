@@ -47,6 +47,7 @@ class Dashboard extends Component {
     }
 
     const { decks, navigation } = this.props;
+    console.log("DECKS:", decks)
     const data = Object.keys(decks).map((deck) => ({
       id: deck,
       title: deck,

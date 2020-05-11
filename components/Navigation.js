@@ -73,16 +73,14 @@ const StackNavigation = () => (
   </Stack.Navigator>
 );
 
- class Navigation extends Component {
+ export function Navigation() {
   
-  render() {
     return (
       <NavigationContainer>
         <StackNavigation />
       </NavigationContainer>
     );
-  }
 }
 
-export default Navigation;
+
 

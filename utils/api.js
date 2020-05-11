@@ -16,3 +16,7 @@ export function submitDeck({ deck, key }) {
   export function fetchDecks () {
     return AsyncStorage.getItem(STORAGE_KEY).then(formatDecks)
   }
+
+  export function deleteDeck(){
+    AsyncStorage.removeItem(STORAGE_KEY, '')
+  }
