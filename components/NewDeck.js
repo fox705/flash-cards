@@ -18,6 +18,7 @@ class NewDeck extends Component {
   hadnleSubmit = () => {
     const key = this.state.title;
     const deck = this.state;
+    const {navigation} = this.props
 
     this.props.dispatch(
       addDeck({
@@ -26,8 +27,7 @@ class NewDeck extends Component {
     );
     submitDeck({ deck, key });
     this.setState({ title: "" });
-
-
+    navigation.navigate('Home')
     // redirect Home
   };
 

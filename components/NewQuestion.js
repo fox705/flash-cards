@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Keyboard,TouchableOpacity,TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Keyboard,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import { white } from "../utils/colors";
 import { addDeck, addQuestion } from "../actions";
 import { connect } from "react-redux";
-import { submitDeck } from "../utils/api";
+import { submitDeck, addQuestionToStorage } from "../utils/api";
 import { styles } from "./NewDeck";
 
 class NewQuestion extends Component {
@@ -22,27 +29,25 @@ class NewQuestion extends Component {
   hadnleSubmit = () => {
     const question = this.state.question;
     const answer = this.state.answer;
-    const {navigation} = this.props
-    const {deck, key } = this.props.route.params;
+    const { navigation } = this.props;
+    const { key } = this.props.route.params;
+    const title = key;
     this.props.dispatch(
-      addQuestion(
-        key,
-        [{
+      addQuestion(key, {
         question: question,
         answer: answer,
-         }])
+      })
     );
+    addQuestionToStorage(title, {question, answer});
     this.setState({ question: "", answer: "" });
-    submitDeck(this.props.state)
-    navigation.navigate('Home')
+    navigation.navigate("Home");
 
     // redirect Home
   };
 
   render() {
-    const {question, answer} = this.state
+    const { question, answer } = this.state;
     return (
-
       <View style={styles.inputContainer}>
         <Text style={styles.text}>Add New Question</Text>
 
@@ -60,7 +65,11 @@ class NewQuestion extends Component {
           defaultValue={this.state.title}
           onBlur={Keyboard.dismiss}
         />
-        <TouchableOpacity disabled={question === '' || answer === ''} style={styles.saveBtn} onPress={this.hadnleSubmit}>
+        <TouchableOpacity
+          disabled={question === "" || answer === ""}
+          style={styles.saveBtn}
+          onPress={this.hadnleSubmit}
+        >
           <Text style={styles.saveBtnText}>Save</Text>
         </TouchableOpacity>
         <Text>{this.state.question}</Text>
@@ -71,7 +80,7 @@ class NewQuestion extends Component {
 }
 
 function mapStateToProps(state) {
-  return {state};
+  return { state };
 }
 
 export default connect(mapStateToProps)(NewQuestion);
