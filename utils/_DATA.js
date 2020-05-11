@@ -34,7 +34,7 @@ function setInitialData() {
 }
 
 export function formatDecks(decks) {
-  console.log("PRINT DECKS:",decks)
+  console.log("PRINT DECKS:",JSON.parse(decks))
   return decks === null ? setInitialData() : JSON.parse(decks);
 }
 

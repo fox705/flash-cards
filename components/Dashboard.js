@@ -53,6 +53,7 @@ class Dashboard extends Component {
       title: deck,
       nQuestions: decks[deck].questions.length,
     }));
+    console.log("DATA: ", data)
 
     return (
       <SafeAreaView style={styles.container}>

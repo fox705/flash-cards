@@ -35,8 +35,6 @@ class NewQuestion extends Component {
     this.setState({ question: "", answer: "" });
     submitDeck(this.props.state)
     navigation.navigate('Home')
-
-    // redirect Home
   };
 
   render() {

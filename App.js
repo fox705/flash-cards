@@ -13,7 +13,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, middleware)}>
         <Navigation/>
       </Provider>
     );
