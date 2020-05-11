@@ -1,9 +1,5 @@
-import {
-  TextInput,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Keyboard } from "react-native";
+import { View, Text, StyleSheet, Keyboard,TouchableOpacity,TextInput } from "react-native";
 import { white } from "../utils/colors";
 import { addDeck } from "../actions";
 import { connect } from "react-redux";

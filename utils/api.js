@@ -9,9 +9,10 @@ export function submitDeck({ deck, key }) {
   }
 
   export function update(decks){
+    console.log("UPDATE DECKS: ", decks)
     AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(decks))
   }
 
-  export async function fetchDecks () {
-    return await AsyncStorage.getItem(STORAGE_KEY).then(formatDecks)
+  export function fetchDecks () {
+    return AsyncStorage.getItem(STORAGE_KEY).then(formatDecks)
   }

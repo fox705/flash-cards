@@ -1,7 +1,5 @@
-import "react-native-gesture-handler";
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Keyboard } from "react-native";
-import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text, StyleSheet, Keyboard, TouchableOpacity, TextInput } from "react-native";
 import { white } from "../utils/colors";
 import { addDeck, addQuestion } from "../actions";
 import { connect } from "react-redux";
@@ -29,10 +27,10 @@ class NewQuestion extends Component {
     this.props.dispatch(
       addQuestion(
         key,
-        [{
+        {
         question: question,
         answer: answer,
-         }])
+         })
     );
     this.setState({ question: "", answer: "" });
     submitDeck(this.props.state)
@@ -42,7 +40,9 @@ class NewQuestion extends Component {
   };
 
   render() {
+    const {question, answer} = this.state
     return (
+
 
       <View style={styles.inputContainer}>
         <Text style={styles.text}>Add New Question</Text>
@@ -61,7 +61,7 @@ class NewQuestion extends Component {
           defaultValue={this.state.title}
           onBlur={Keyboard.dismiss}
         />
-        <TouchableOpacity style={styles.saveBtn} onPress={this.hadnleSubmit}>
+        <TouchableOpacity  disabled={question === '' || answer === ''} style={styles.saveBtn} onPress={this.hadnleSubmit}>
           <Text style={styles.saveBtnText}>Save</Text>
         </TouchableOpacity>
         <Text>{this.state.question}</Text>
