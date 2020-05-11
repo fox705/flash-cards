@@ -27,7 +27,8 @@ class NewDeck extends Component {
     );
     submitDeck({ deck, key });
     this.setState({ title: "" });
-    navigation.navigate('Home')
+    navigation.navigate("Deck", { deck, id: deck.title, nQuestions: deck.questions.length })
+
     // redirect Home
   };
 

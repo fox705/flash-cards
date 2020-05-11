@@ -58,6 +58,12 @@ class Quiz extends Component {
 
     console.log("QUIZ: ", quiz);
 
+    if(quiz.length === 0){
+        return(<View>
+            <Text>No Questions for this Quiz</Text>
+        </View>)
+    }
+
     if (finished) {
       return (
         <View>
@@ -65,7 +71,7 @@ class Quiz extends Component {
           <TouchableOpacity onPress={this.reset}>
             <Text>Restart Quiz</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Deck")}>
             <Text>Back to Deck</Text>
           </TouchableOpacity>
         </View>
