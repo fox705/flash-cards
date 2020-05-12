@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#007BFF",
     backgroundColor: "#007BFF",
-    padding: 15,
+    padding: 20,
     margin: 5,
   },
   saveBtnText: {

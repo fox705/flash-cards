@@ -11,7 +11,6 @@ class Deck extends Component{
     render(){
         const {navigation} = this.props
         const {id, nQuestions, deck} = this.props.route.params
-        console.log("DECK PROPS", nQuestions)
         return(
             <View style={styles.inputContainer}>
                 <Text style={styles.text}>{id}</Text>

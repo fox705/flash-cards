@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
+import { styles } from "./NewDeck";
+import { red } from "../utils/colors";
 
 class Quiz extends Component {
   state = {
@@ -37,6 +40,8 @@ class Quiz extends Component {
 
     if (this.state.index === this.props.route.params.nQuestions - 1) {
       this.setState({ finished: true });
+      clearLocalNotification();
+      setLocalNotification();
     }
   };
 
@@ -56,7 +61,6 @@ class Quiz extends Component {
     const { navigation } = this.props;
     const quiz = deck.questions;
 
-    console.log("QUIZ: ", quiz);
 
     if(quiz.length === 0){
         return(<View>
@@ -66,13 +70,14 @@ class Quiz extends Component {
 
     if (finished) {
       return (
-        <View>
-          <Text>{score}</Text>
-          <TouchableOpacity onPress={this.reset}>
-            <Text>Restart Quiz</Text>
+        <View><View>
+            <Text style={styles.text}>Your Score: {Math.floor(score/nQuestions * 100)}%</Text>
+        </View>
+          <TouchableOpacity style={styles.saveBtn} onPress={this.reset}>
+            <Text style={styles.saveBtnText}>Restart Quiz</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Deck")}>
-            <Text>Back to Deck</Text>
+          <TouchableOpacity style={styles.saveBtn} onPress={() => navigation.navigate("Deck")}>
+            <Text style={styles.saveBtnText}>Back to Deck</Text>
           </TouchableOpacity>
         </View>
       );
@@ -80,22 +85,23 @@ class Quiz extends Component {
 
     return (
       <View>
-        <Text>Remaining Questions: {nQuestions - nAnswered}</Text>
+        <Text style={[styles.text, {fontSize: 14}]}>Remaining Questions: {nQuestions - nAnswered}</Text>
         {!showAnswer ? (
-          <View>
-            <Text>{quiz[index].question}</Text>
-            <TouchableOpacity onPress={this.showAnswer}>
-              <Text>Show Answer</Text>
+          <View><View>
+          <Text style={[styles.text, {fontSize: 20}]}>{quiz[index].question}</Text>
+          </View>
+            <TouchableOpacity style={styles.saveBtn} onPress={this.showAnswer}>
+              <Text style={styles.saveBtnText}>Show Answer</Text>
             </TouchableOpacity>
           </View>
         ) : (
           <View>
-            <Text>{quiz[index].answer}</Text>
-            <TouchableOpacity onPress={this.handleCorrect}>
-              <Text>Correct</Text>
+          <View><Text style={[styles.text, {fontSize: 20}]} >{quiz[index].answer}</Text></View>
+            <TouchableOpacity style={[styles.saveBtn, {backgroundColor: 'green'}]} onPress={this.handleCorrect}>
+              <Text style={styles.saveBtnText} >Correct</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.handleIncorrect}>
-              <Text>Incorrect</Text>
+            <TouchableOpacity style={[styles.saveBtn, {backgroundColor: red}]} onPress={this.handleIncorrect}>
+              <Text style={styles.saveBtnText} >Incorrect</Text>
             </TouchableOpacity>
           </View>
         )}
