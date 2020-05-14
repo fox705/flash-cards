@@ -30,7 +30,7 @@ class NewQuestion extends Component {
     const question = this.state.question;
     const answer = this.state.answer;
     const { navigation } = this.props;
-    const { key } = this.props.route.params;
+    const { deck, key, nQuestions } = this.props.route.params;
     const title = key;
     this.props.dispatch(
       addQuestion(key, {
@@ -40,9 +40,7 @@ class NewQuestion extends Component {
     );
     addQuestionToStorage(title, {question, answer});
     this.setState({ question: "", answer: "" });
-    navigation.navigate("Home");
-
-    // redirect Home
+    navigation.navigate("Deck", { deck, id: title, nQuestions: nQuestions + 1});
   };
 
   render() {
@@ -72,8 +70,6 @@ class NewQuestion extends Component {
         >
           <Text style={styles.saveBtnText}>Save</Text>
         </TouchableOpacity>
-        <Text>{this.state.question}</Text>
-        <Text>{this.state.answer}</Text>
       </View>
     );
   }

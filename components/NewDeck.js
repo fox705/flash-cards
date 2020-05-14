@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Keyboard,TouchableOpacity,TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Keyboard,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import { white } from "../utils/colors";
 import { addDeck } from "../actions";
 import { connect } from "react-redux";
@@ -18,7 +25,7 @@ class NewDeck extends Component {
   hadnleSubmit = () => {
     const key = this.state.title;
     const deck = this.state;
-    const {navigation} = this.props
+    const { navigation } = this.props;
 
     this.props.dispatch(
       addDeck({
@@ -27,29 +34,36 @@ class NewDeck extends Component {
     );
     submitDeck({ deck, key });
     this.setState({ title: "" });
-    navigation.navigate("Deck", { deck, id: deck.title, nQuestions: deck.questions.length })
+    navigation.navigate("Deck", {
+      deck,
+      id: deck.title,
+      nQuestions: deck.questions.length,
+    });
 
     // redirect Home
   };
 
   render() {
-    const {title} = this.state;
+    const { title } = this.state;
     return (
-        <View style={styles.inputContainer}>
-          <Text style={styles.text}>Add New Deck</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.text}>Add New Deck</Text>
 
-          <TextInput
-            style={styles.textInput}
-            placeholder="New Deck Title"
-            onChangeText={this.onChange}
-            defaultValue={this.state.title}
-            onBlur={Keyboard.dismiss}
-          />
-          <TouchableOpacity  disabled={title === ''} style={styles.saveBtn} onPress={this.hadnleSubmit}>
-            <Text style={styles.saveBtnText}>Save</Text>
-          </TouchableOpacity>
-          <Text>{this.state.title}</Text>
-        </View>
+        <TextInput
+          style={styles.textInput}
+          placeholder="New Deck Title"
+          onChangeText={this.onChange}
+          defaultValue={this.state.title}
+          onBlur={Keyboard.dismiss}
+        />
+        <TouchableOpacity
+          disabled={title === ""}
+          style={styles.saveBtn}
+          onPress={this.hadnleSubmit}
+        >
+          <Text style={styles.saveBtnText}>Save</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -69,7 +83,7 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     paddingTop: 20,
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   textInput: {
     borderColor: "#CCCCCC",

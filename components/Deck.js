@@ -15,7 +15,7 @@ class Deck extends Component{
             <View style={styles.inputContainer}>
                 <Text style={styles.text}>{id}</Text>
                 <Text style={styles.text}>{nQuestions} Cards</Text>
-                <TouchableOpacity style={styles.saveBtn} onPress={() => navigation.navigate('NewQuestion', {deck,key:id})}><Text>Add Question</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.saveBtn} onPress={() => navigation.navigate('NewQuestion', {deck,key:id, nQuestions})}><Text>Add Question</Text></TouchableOpacity>
                 <TouchableOpacity style={[styles.saveBtn, {backgroundColor: red}]} onPress={() => navigation.navigate('Quiz', {deck,key:id, nQuestions})}><Text>Start Quiz</Text></TouchableOpacity>
             </View>
         )

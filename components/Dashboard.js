@@ -13,13 +13,16 @@ import { receiveDecks } from "../actions";
 import Constants from "expo-constants";
 import { AppLoading } from "expo";
 
-
 function Item({ deck, title, nQuestions, navigation }) {
   return (
     <View style={styles.item}>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate("Deck", { deck, id: title, nQuestions: nQuestions })
+          navigation.navigate("Deck", {
+            deck,
+            id: title,
+            nQuestions: nQuestions,
+          })
         }
       >
         <Text style={styles.title}>{title}</Text>
@@ -53,7 +56,6 @@ class Dashboard extends Component {
       title: deck,
       nQuestions: decks[deck].questions.length,
     }));
-
 
     return (
       <SafeAreaView style={styles.container}>

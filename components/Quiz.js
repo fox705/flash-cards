@@ -27,6 +27,8 @@ class Quiz extends Component {
 
     if (this.state.index === this.props.route.params.nQuestions - 1) {
       this.setState({ finished: true });
+      clearLocalNotification();
+      setLocalNotification();
     }
   };
 
